@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 同路由下兄弟 -->
+    <!-- vuex -->
+    <!-- 同路由下父子 -->
+    <!-- props -->
+    <!-- 不同路由组件传 -->
+    <!-- url?xxx=params -->
+    <!-- 不同组件传递 -->
+    <!-- 自定义事件方法传递 -->
+    <div id="demo" style="border:1px solid red">
+        <p>{{name}}</p>
+        <button @click="sendData">发送</button>
+    </div>
+    <div id="demo2" style="border:1px solid green">
+        <p>{{name}}</p>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        // 事件总成
+        var bus = new Vue();
+
+        new Vue({
+            el: "#demo",
+            data: {
+                name: "ly"
+            },
+            methods: {
+                sendData(){
+                    // 开车
+                    var name = this.name;
+                    bus.$emit("sendData",name)
+                }
+            }
+        })
+
+        new Vue({
+            el: "#demo2",
+            data: {
+                name: "lx"
+            },
+            methods: {
+
+            },
+            mounted(){
+                // 下车
+                bus.$on("sendData",(data)=>{
+                    this.name = data;
+                    console.log(data)
+                })
+            }
+        })
+    </script>
+</body>
+
+</html>
