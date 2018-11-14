@@ -3,6 +3,7 @@ import React, {
 } from "react";
 import "./Xfooter.css";
 import iconTabbar from "../../assets/icon_tabbar.png";
+import { Link } from "react-router-dom";
 
 // v-if  
 // v-show
@@ -80,7 +81,7 @@ class Xfooter extends Component {
                             }
                         })
                         return (
-                            <a onClick={this.toggleTab.bind(this,index)} key={index} href="javascript:;" nnnnn={this.ing(this.state.title)} className={
+                            <Link to={`/home/${item.href}`} onClick={this.toggleTab.bind(this,index)} key={index} nnnnn={this.ing(this.state.title)} className={
                                 this.state.tab===index?"weui-tabbar__item weui-bar__item_on":"weui-tabbar__item"
                             }>
                                 <span style={{
@@ -99,7 +100,7 @@ class Xfooter extends Component {
                                     }
                                 </span>
                                 <p className="weui-tabbar__label">{item.title}</p>
-                            </a>
+                            </Link>
                         )
                     })
                 })()}

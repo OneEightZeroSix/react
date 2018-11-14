@@ -1,6 +1,7 @@
 import React, {
     Component
 } from "react";
+import { Link } from "react-router-dom";
 // css
 import "./Xpannel.css";
 console.log(React);
@@ -45,7 +46,7 @@ class Xpannel extends Component {
                     {(()=>{
                         return this.state.song_list.map((item,index)=>{
                             return (
-                                <a key={index} href="javascript:void(0);" className="weui-media-box weui-media-box_appmsg">
+                                <Link key={index} to={`/detail/${index}/${item.song_id}`} className="weui-media-box weui-media-box_appmsg">
                                     <div className="weui-media-box__hd">
                                         <img className="weui-media-box__thumb" src={item.pic_small} alt="" />
                                     </div>
@@ -53,7 +54,7 @@ class Xpannel extends Component {
                                         <h4 className="weui-media-box__title">{item.title}</h4>
                                         <p className="weui-media-box__desc">{item.author}</p>
                                     </div>
-                                </a>
+                                </Link>
                             )
                         })
                     })()}                  

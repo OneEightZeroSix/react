@@ -4,24 +4,31 @@ import axios from 'axios';
 
 // 虚拟DOM
 import ReactDOM from 'react-dom';
+
+// 路由功能
+import { HashRouter as Router, Route , Redirect} from "react-router-dom";
+
 import './index.css';
-// app组件
-import App from './App';
-import Xheader from './components/Xheader/Xheader';
-import Xsearch from './components/Xsearch/Xsearch';
-import Xpannel from './components/Xpannel/Xpannel.jsx';
-import Xfooter from './components/Xfooter/Xfooter';
+import './assets/weui.css';
+// 子组件 复用组件
+// import App from './App';
+
+
+// 页面组件 容器组件
+import Home from './pages/Home/Home.jsx';
+import Detail from './pages/Detail/Detail.jsx';
 
 import * as serviceWorker from './serviceWorker';
 React.axios = axios;
 ReactDOM.render(
-    <div>
-        <Xheader title="微博" />
-        <Xheader title="微信" />
-        <Xsearch />
-        <Xpannel />
-        <Xfooter />
-    </div>, 
+    <Router>
+        <div>
+            <Route path="/home/" component={Home} />
+            <Route path="/detail/:id/:song_id" component={Detail} />
+            
+        </div>
+    </Router>
+    , 
     document.getElementById('root')
 );
 
