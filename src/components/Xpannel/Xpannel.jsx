@@ -4,13 +4,15 @@ import React, {
 import { Link } from "react-router-dom";
 // css
 import "./Xpannel.css";
+import store from "../../libs/store.js";
 console.log(React);
 class Xpannel extends Component {
     constructor(props) {
         super(props);
         // model  data
         this.state = {
-            song_list: []
+            song_list: [],
+            inputValue:""
         }
     }
     loadMore() {
@@ -41,7 +43,7 @@ class Xpannel extends Component {
                     return "abc"
                 })()
             } className="weui-panel weui-panel_access">
-                <div className="weui-panel__hd">图文组合列表</div>
+                <div className="weui-panel__hd">{this.state.inputValue}</div>
                 <div className="weui-panel__bd">
                     {(()=>{
                         return this.state.song_list.map((item,index)=>{
@@ -69,6 +71,12 @@ class Xpannel extends Component {
         )
     }
     componentDidMount() {
+        store.on("inputValue",(data)=>{
+            console.log(data);
+            this.setState({
+                inputValue:data
+            })
+        })
         this.loadMore()
     }
 

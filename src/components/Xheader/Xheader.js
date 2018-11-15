@@ -3,6 +3,8 @@ import React, {
 } from "react";
 // css
 import "./Xheader.css";
+import { Provider, connect } from 'react-redux';
+
 class Xheader extends Component {
     constructor(props){
         super(props);
@@ -16,10 +18,21 @@ class Xheader extends Component {
     // html
     render(){
         return (
-            <header>{this.props.title}</header>
+            <header onClick={this.props.toggleSheet.bind(this)}>{this.props.title}</header>
         )
     }
     // js
 }
 
-export default Xheader;
+export default connect((state)=>{
+    return state
+},(dispatch)=>{
+    return {
+        toggleSheet(){
+            dispatch({
+                type:"toggleSheet",
+                isShowActionSheet:true
+            })
+        }
+    }
+})(Xheader);

@@ -9,6 +9,7 @@ import Research from '../Research/Research.jsx';
 import Mine from '../Mine/Mine.jsx';
 
 import Xfooter from '../../components/Xfooter/Xfooter';
+import Xactionsheet from '../../components/Xactionsheet/Xactionsheet.jsx';
 import { Route } from "react-router-dom";
 class Home extends Component {
     constructor(props) {
@@ -23,6 +24,7 @@ class Home extends Component {
                 <Route path="/home/contact" component={Contact} />
                 <Route path="/home/research" component={Research} />
                 <Route path="/home/mine" component={Mine} />
+                <Xactionsheet />
                 <Xfooter />
             </div>
         )

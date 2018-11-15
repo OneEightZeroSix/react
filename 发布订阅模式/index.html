@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
-
 <body>
     <!-- 同路由下兄弟 -->
     <!-- vuex -->
@@ -25,14 +23,17 @@
         <p>{{name}}</p>
     </div>
     <script src="vue.js"></script>
+    <script src="store.js"></script>
     <script>
         // 事件总成
         var bus = new Vue();
-
         new Vue({
             el: "#demo",
             data: {
                 name: "ly"
+            },
+            mounted(){
+                console.log(lyex)
             },
             methods: {
                 sendData(){
@@ -42,7 +43,6 @@
                 }
             }
         })
-
         new Vue({
             el: "#demo2",
             data: {
@@ -52,6 +52,7 @@
 
             },
             mounted(){
+                console.log(lyex)
                 // 下车
                 bus.$on("sendData",(data)=>{
                     this.name = data;

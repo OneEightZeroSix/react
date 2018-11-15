@@ -3,10 +3,13 @@ import React, {
 } from "react";
 // css
 import "./Xsearch.css";
+import store from "../../libs/store.js";
+import { connect} from 'react-redux';
 class Xsearch extends Component {
     constructor(props){
         super(props);
         // model  data  M-》V
+        console.log(props);
         this.state = {
             isShowSearchBar:true,
             searchValue:""
@@ -18,9 +21,12 @@ class Xsearch extends Component {
             isShowSearchBar:!this.state.isShowSearchBar
         })
         this.refs.imput.focus();
+        this.props.onEditTextClick();
     }
     getInputValue(e){
-        console.log(e.target.value);
+        // 发送数据
+        store.emit("inputValue",e.target.value);
+        //console.log(e.target.value);
         this.setState({
             searchValue:e.target.value
         })
@@ -40,10 +46,28 @@ class Xsearch extends Component {
                         <span>搜索</span>
                     </label>
                 </form>
-                <a onClick={this.tapLabel.bind(this)} href="javascript:" className="weui-search-bar__cancel-btn" id="searchCancel">取消</a>
+                <a onClick={this.tapLabel.bind(this)} href="javascript:" className="weui-search-bar__cancel-btn" id="searchCancel">{this.props.text}</a>
             </div>
         )
     }
 }
+// getters
+// 第一个回调函数 该组件连接上redux的store，并把state里面的数据拿回来，放到props
 
-export default Xsearch;
+// action->mumtation
+// 第二个回调函数  该组件触发事件，让state里面的数据改变
+export default connect((state)=>{
+    return state
+},(dispatch)=>{
+    return {
+        // 定义了一个函数
+        onEditTextClick: () => {
+            //可以触发多个
+            // dispatch的参数为store里面的action
+            dispatch({
+                type:"editText",
+                text:"校区"
+            })
+        }
+    }
+})(Xsearch);
